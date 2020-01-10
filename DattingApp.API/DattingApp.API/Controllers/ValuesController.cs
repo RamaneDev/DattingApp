@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DattingApp.API.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DattingApp.API.Controllers
@@ -13,6 +14,7 @@ namespace DattingApp.API.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly DataContext _context;
+        
         public ValuesController(DataContext context)
         {
             this._context = context;
@@ -20,9 +22,18 @@ namespace DattingApp.API.Controllers
 
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var values = this._context.Values.ToList();
+            var values = await this._context.Values.ToListAsync();
+
+            return Ok(values);
+        }
+
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var values = await this._context.Values.FirstOrDefaultAsync(x => x.Id == id);
 
             return Ok(values);
         }
