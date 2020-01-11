@@ -14,7 +14,7 @@ namespace DattingApp.API.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly DataContext _context;
-        
+
         public ValuesController(DataContext context)
         {
             this._context = context;
@@ -29,7 +29,7 @@ namespace DattingApp.API.Controllers
             return Ok(values);
         }
 
-        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
