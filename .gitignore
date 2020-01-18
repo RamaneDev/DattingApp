@@ -4,3 +4,5 @@
 /DattingApp.API/DattingApp.API/*.db
 .vs
 .vscode
+/DattingApp.API/DattingApp.API/*.db-wal
+/DattingApp.API/DattingApp.API/dating.db-shm
